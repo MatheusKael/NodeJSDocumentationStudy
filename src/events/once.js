@@ -17,6 +17,9 @@ async function run() {
     ee.emit("error", err);
   });
 
+  once(ee, "error")
+    .then(([err]) => console.log("ok", err.message))
+    .catch((err) => console.log("error", err.message));
   try {
     await once(ee, "myevent");
   } catch (err) {
